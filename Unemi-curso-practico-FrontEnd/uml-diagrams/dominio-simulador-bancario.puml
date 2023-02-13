@@ -1,0 +1,66 @@
+@startuml
+
+class Persona{
+  cedula: string
+  nombres : string
+}
+
+class Titular {
+  fechaIngreso: date
+}
+
+class TipoCuenta{
+  codigo: string
+  nombre: string
+}
+
+class Cuenta {
+  numero: string
+  saldo: double
+}
+
+class CuentaAhorro {
+}
+
+class CuentaCorriente {
+  interesMensual: double
+}
+
+class InversionCDT {
+  interesMensual: double
+  fechaCierre: date
+}
+
+class CuentaBancaria{
+    titular: Titular
+    tipo: TipoCuenta
+    cuentaProducto: object
+}
+
+class RepositorioCuentasBanco{
+    cuentas: list
+    transacciones: list
+}
+
+class CasoUsoSimuladorBancario{
+  respositorioCuentaBanco: RespositorioCuentaBanco
+  + crear(cuenta)
+  + editar(numero, cuenta)
+  + eliminar(numero)
+}
+
+
+Persona <|--  Titular
+Cuenta  <|--  CuentaAhorro
+Cuenta  <|--  CuentaCorriente
+Cuenta  <|--  InversionCDT
+
+CuentaBancaria *-- Persona
+CuentaBancaria *-- TipoCuenta
+CuentaBancaria *-- Cuenta
+
+CasoUsoSimuladorBancario o-- RepositorioCuentasBanco
+CasoUsoSimuladorBancario ..> CuentaBancaria
+
+
+@enduml

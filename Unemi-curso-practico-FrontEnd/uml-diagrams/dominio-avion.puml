@@ -1,0 +1,43 @@
+class Persona{
+  cedula: string
+  nombres : string
+}
+
+class Pasajero {
+  codigo:string  
+  nombre: date
+  cedula:float
+
+}
+
+class voleto{
+   id_pasajero:string
+  codigo_voleto: string
+  destino: string
+  dia_salida:string
+  dia_retorno:string
+  lugar_asiento:float
+}
+
+class Repositoriolista_pasajeros{
+    asientos: list
+    disponibilidad: list
+}
+
+class CasoUsoEstudio_avion{
+  respositoriolista_pasajeros: Respositoriolista_pasajeros
+  + crear(boleto)
+  + editar(numero,asiento)
+  + eliminar(pasajero)
+  +Actualizar(pasajeros)
+}
+
+
+Persona <|--  Pasajero
+Pasajero  <|-- voleto
+
+CasoUsoEstudio_avion o-- Repositoriolista_pasajeros
+CasoUsoEstudio_avion ..> voleto
+
+
+@enduml
